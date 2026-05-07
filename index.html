@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Viettel Official - Shopee Mall</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "brand-red": "#EE4D2D",
+                        "secondary-container": "#e41f13",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#191e00",
+                        "surface-container-low": "#f3f4f5",
+                        "outline-variant": "#c8c7b8",
+                        "tertiary-fixed": "#ffe088",
+                        "tertiary": "#735c00",
+                        "outline": "#77786b",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "secondary-fixed": "#ffdad4",
+                        "on-secondary-fixed": "#410000",
+                        "on-surface-variant": "#47483c",
+                        "primary-fixed-dim": "#c3cc8c",
+                        "surface-container-high": "#e7e8e9",
+                        "on-background": "#191c1d",
+                        "surface-dim": "#d9dadb",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#cca730",
+                        "on-secondary-fixed-variant": "#930000",
+                        "on-secondary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#241a00",
+                        "inverse-primary": "#c3cc8c",
+                        "on-primary": "#ffffff",
+                        "background": "#f8f9fa",
+                        "surface-container": "#edeeef",
+                        "on-primary-container": "#bdc787",
+                        "primary-fixed": "#dfe8a6",
+                        "on-tertiary-container": "#4f3e00",
+                        "primary": "#EE4D2D",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#434b18",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-variant": "#e1e3e4",
+                        "surface-bright": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#5a632e",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "secondary": "#EE4D2D",
+                        "on-surface": "#191c1d",
+                        "inverse-surface": "#2e3132",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#EE4D2D"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "20px",
+                        "container-max": "1240px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .mall-badge {
+            background-color: #EE4D2D;
+            color: white;
+            padding: 1px 4px;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+        .sale-tag {
+            background: linear-gradient(135deg, #ff4d00 0%, #ff8e00 100%);
+            color: white;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .product-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .product-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-20">
+<!-- Top AppBar Component -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-4 h-16 text-on-primary" style="background-color: #EE4D2D;">
+<div class="flex items-center w-full justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer">arrow_back</span>
+<div class="flex items-center gap-2">
+<h1 class="text-headline-md font-headline-md font-bold">Chợ Giao Nhanh Viettel Post Official Store</h1>
+<span class="mall-badge">Mall</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer">shopping_cart</span>
+<span class="material-symbols-outlined cursor-pointer">more_vert</span>
+</div>
+</div>
+</header>
+<main class="pt-16 max-w-[480px] mx-auto bg-white shadow-sm min-h-screen">
+<!-- Shop Header Profile -->
+<section class="p-4 relative overflow-hidden" style="background-color: #EE4D2D;">
+<div class="flex items-center gap-4 relative z-10">
+<div class="w-16 h-16 rounded-full border-2 border-on-primary overflow-hidden bg-white flex-shrink-0">
+<img alt="Viettel Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujmJLAZ4uUDYFnAoG3cQ1pUfegYUiirT7HSGn7fAbjmCQgkr-yAR-AjExsAsRgF3bXefJNQ_dGEO_2mEC0WkGljqPvOatVO57w4sHIP3MLu6NpSblLQU4heEuiWrE3v-ja43KvNt20TghjAO23gno6Gt_bqfz6HeM4L82JbjuaFl5ujsWOjx1bY5bJEKMYUJiaifGb--XHuCiutuJH19nXG68M6ViOVun5YhgfR3MZgqgVVUbQpYULLP0EVkgbtfj_FZHIXpee_rV4"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-1 mb-1">
+<h2 class="text-on-primary font-headline-md text-lg font-bold">Chợ Giao Nhanh Viettel Post Official Store</h2>
+<span class="material-symbols-outlined text-sm text-tertiary-fixed">verified</span>
+</div>
+<div class="flex flex-wrap gap-x-4 gap-y-1">
+<div class="text-[10px] text-on-primary/80 flex items-center gap-1">
+<span class="font-bold text-on-primary">48.2k</span> Người theo dõi
+                    </div>
+<div class="text-[10px] text-on-primary/80 flex items-center gap-1">
+<span class="font-bold text-on-primary">4.9/5.0</span> Đánh giá
+                    </div>
+<div class="text-[10px] text-on-primary/80 flex items-center gap-1">
+<span class="font-bold text-on-primary">98%</span> Phản hồi
+                    </div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<button class="px-4 py-1.5 border border-on-primary text-on-primary text-label-sm font-label-sm rounded-sm hover:bg-on-primary/10 transition-colors uppercase">Theo dõi</button>
+<button class="px-4 py-1.5 border border-on-primary text-on-primary text-label-sm font-label-sm rounded-sm hover:bg-on-primary/10 transition-colors uppercase">Chat</button>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-9xl">shield</span>
+</div>
+</section>
+<!-- Navigation Tabs -->
+<nav class="flex border-b border-outline-variant bg-white sticky top-16 z-40 overflow-x-auto custom-scrollbar">
+<a class="px-6 py-3 text-secondary font-bold border-b-2 border-secondary whitespace-nowrap text-label-lg" href="#">Cửa hàng</a>
+<a class="px-6 py-3 text-on-surface-variant hover:text-secondary whitespace-nowrap text-label-lg" href="#">Tất cả sản phẩm</a>
+<a class="px-6 py-3 text-on-surface-variant hover:text-secondary whitespace-nowrap text-label-lg" href="#">Danh mục</a>
+<a class="px-6 py-3 text-on-surface-variant hover:text-secondary whitespace-nowrap text-label-lg" href="#">Mã giảm giá</a>
+</nav>
+<!-- Hero Banner -->
+<section class="px-4 pt-4 bg-white flex flex-col gap-4">
+<div class="rounded-xl overflow-hidden shadow-sm">
+<img alt="Khám phá thế giới lương khô" class="w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujz5tmNpQMxCqf_7UUkIjoHT1N2OqVw1_sgW7KO6_XTwF6R07EZpFVRJ-6oy18Kz9ZBidsb1fi8mjwxwAgjOUK2WxMk76RoranVmQqNnkHnGnFKnWqOxCRZFauim3E6q0bHwsail-5KthlciF7D1dtzTs9yBUNCwX4mgAZEhS-iPcrLGJb3zDZ1bAyFXHfLRsssFuCtJTcj_fu-Dxzvx4Y7Q5jBBN1PF-4uLRYtgyok2NDepHhdPnX6QSG6IAY7bd4zenh0wgVpmhA"/>
+</div>
+<div class="rounded-xl overflow-hidden shadow-sm mx-auto w-full">
+<img alt="Nhu yếu phẩm thiết yếu" class="w-full object-contain bg-white" src="https://lh3.googleusercontent.com/aida/ADBb0uhh4bugMeVuqGW0maj8Csice6ypDECI1ztfTbNVgClMyA0YOR1RrtBaVtiGg0pToEB2SfJfGqkTS7pxaCYT54c6optA39VWEo8TF81YJb3wK9Omg8Y-CMyw3ew0pGzWK5HGGLTNEPuMhSBlrE2m10Als9zHncE3AMz-oJpbxcAWn9M1Lru2suhNJCueOuG2x1BcGdyeG7pYvREDkNqWRd6XPxDebXRANdWPnTxPAtPLckuISesD6mqi7_wIkYeLg2szvCev5KPC0X8"/>
+</div>
+</section>
+<section class="p-4 bg-white">
+<div class="rounded-xl overflow-hidden relative group">
+<img alt="Lương khô quân đội" class="w-full aspect-[2.35/1] object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugVvNdkkf2uyc23ox0ok0lS5rdFZ7OG5AcJ2FELVGDCv9vLe6BmXTd2WWPCeBu-eVjHykEnjNf7nevazIMZNVlmiFyIIWLGJ2w_Zru1qMZYJ7fqsCwe-_WV8ahg-PRhVnfqgTygexDEDemzYjc_GWIeKpDcJrug3_xGiu7wkOczwgZC_cjd3WLscHTFsFhlSfnBE30Pyv3Wa3LB8zRpk0wUjCODVO5OJJoebHxPSWyFHfV_juQN3Lmmbz6m9ww19ALa2uUkAwe8QnE"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/30 to-transparent flex flex-col justify-center p-6">
+<h3 class="text-on-primary font-display-lg text-2xl leading-tight mb-2"></h3>
+<p class="text-on-primary/90 text-label-lg font-normal mb-4"></p>
+<div>
+<span class="bg-secondary text-on-secondary px-4 py-2 rounded-sm text-label-lg font-bold uppercase tracking-wider">Khám phá ngay</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Voucher Section -->
+<section class="p-4 bg-white">
+<h4 class="text-label-lg font-bold text-primary mb-3 flex items-center justify-between">
+            Mã Giảm Giá Độc Quyền
+            <span class="text-secondary text-xs font-normal">Xem thêm</span>
+</h4>
+<div class="flex gap-3 overflow-x-auto custom-scrollbar pb-2">
+<div class="flex-shrink-0 flex border border-secondary-fixed bg-secondary-fixed/10 rounded-lg overflow-hidden h-20 w-64">
+<div class="bg-secondary text-on-secondary w-20 flex flex-col items-center justify-center border-r border-dashed border-white">
+<span class="text-[10px] uppercase font-bold">Giảm</span>
+<span class="text-lg font-black">20K</span>
+</div>
+<div class="flex-1 p-2 flex flex-col justify-between">
+<div>
+<p class="text-[10px] font-bold text-on-surface truncate">Đơn tối thiểu 250K</p>
+<p class="text-[8px] text-on-surface-variant">HSD: 31.05.2024</p>
+</div>
+<button class="self-end bg-secondary text-white text-[10px] px-3 py-1 rounded-sm font-bold uppercase">Lưu</button>
+</div>
+</div>
+<div class="flex-shrink-0 flex border border-secondary-fixed bg-secondary-fixed/10 rounded-lg overflow-hidden h-20 w-64">
+<div class="bg-secondary text-on-secondary w-20 flex flex-col items-center justify-center border-r border-dashed border-white">
+<span class="text-[10px] uppercase font-bold">Giảm</span>
+<span class="text-lg font-black">50K</span>
+</div>
+<div class="flex-1 p-2 flex flex-col justify-between">
+<div>
+<p class="text-[10px] font-bold text-on-surface truncate">Đơn tối thiểu 600K</p>
+<p class="text-[8px] text-on-surface-variant">HSD: 31.05.2024</p>
+</div>
+<button class="self-end bg-secondary text-white text-[10px] px-3 py-1 rounded-sm font-bold uppercase">Lưu</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Promotional Banner -->
+<section class="mb-4">
+<img alt="Lương khô quân đội chất lượng" class="w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugVvNdkkf2uyc23ox0ok0lS5rdFZ7OG5AcJ2FELVGDCv9vLe6BmXTd2WWPCeBu-eVjHykEnjNf7nevazIMZNVlmiFyIIWLGJ2w_Zru1qMZYJ7fqsCwe-_WV8ahg-PRhVnfqgTygexDEDemzYjc_GWIeKpDcJrug3_xGiu7wkOczwgZC_cjd3WLscHTFsFhlSfnBE30Pyv3Wa3LB8zRpk0wUjCODVO5OJJoebHxPSWyFHfV_juQN3Lmmbz6m9ww19ALa2uUkAwe8QnE"/>
+</section>
+<!-- Trust Bar -->
+<section class="grid grid-cols-3 bg-surface-container py-3 px-2 text-center gap-1">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-xl">verified_user</span>
+<span class="text-[10px] font-semibold text-on-surface-variant">Cam kết chính hãng</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-xl">local_shipping</span>
+<span class="text-[10px] font-semibold text-on-surface-variant">Giao hàng toàn quốc</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-xl">security</span>
+<span class="text-[10px] font-semibold text-on-surface-variant">Bảo mật thông tin</span>
+</div>
+</section>
+<!-- Product Grid Section -->
+<section class="p-4 bg-surface-container-low">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-headline-md font-bold text-primary">Lương khô Quân Đội</h3>
+<div class="flex items-center gap-1 text-secondary font-bold text-sm cursor-pointer">
+                Phổ biến <span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Product 1 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Lương khô Matcha" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugFLS_ypiugzCMhbynm1xKlSOkp_kgmQ3cRLH_gfa1Cld1e6nnT1XNNoTzrVmYsd8oddvGSgmXYRnUHvrqMML9C-qoqnhkMjsaJb1y8hDiBgEhGm4wMODxr71FqzLdqGD5AIR92kpm6EUhrnD3XhMtN6YvQL4RfXcDV64tg2rgzdfAAKVvasAbEPfTak5WIzPhctWUnG6sczZYAR_TXcxMoFZ_L2IG4ZefHmGNufnOUdd-XwpBwaq_GUTfR3S6yUzXBAoFjCU4XtDM"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô Matcha trà xanh 180g - (Túi 12 viên 15g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫65.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Viên năng lượng Mè" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugBuXBwi0M3DxfxhU4on0RCfA_ARzEF4OepUd7nJa8duXpD1KlZXf0RmNG8zbDAdnYoXvcYHG2nNxa2OH9FPaXqjJzIyJqkIp80Qjc36Wr9BSu-LrbLysGCRK9I1z0eglpLGqIWgUokMFu4ywueHvk7GOndDXW1SE88H_KXuMLydjeQkg-Ctr0jnlNveNWoYx19x8G5RpYw6HExkN5SMn3TE8ZV9F8Hbef7aS4rCq8QJHsbq6tecr88cp0QFHUtVaWVDn4Qo5OqBVE"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô Cacao - Túi 300g (25 viên 12g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫95.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Lương khô Mặn" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujV9yd0xUkeZj4QTVyRZ4imEdjAzhpzH0vcUYWEpWix8VQ3t7I6F0Qm0wySW3j6qpdjxBSlFgoiwcEB1gmyFOftfwVRlBdOCCOjkSBfBAhOJV_HE965K3r140CwpxV0qZ0KFzpqZiShsnVcdSEkLLS_Pa6Wdy9fHJx0OpvoO8cGV5CYuv1NnZK76uWWPf5yFcv7Jzk-a8Cc7VNKty3XBUCZGKNea85bnyyJO45gHpaUJX4OcPeifWlTFt1p0GPY5f_yu1idohffkAw"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô Mặn Salted - Gói 500g</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫195.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Dream Business" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug-fmsXLfBGaeYgaQI8mCV7wQ4YRuMEgI1-jSnrq03PTyFBmh8hetNor_3bj4vEYKINIoGQioXk1FJ2NehMmxgA8576XL0pGtTkFV9RwAJRdxgby5PQcrHF7Vuhcme6wf3lkE4GOs7rMuXfz035WI3ZE9rm-vXjMsWdAD4ObKTGTprv0_UVVsJTpe9ERwVDB4f3tiZpeI-NvRDu7HFXKz8ZfNeaHnO9tKsg6ejvdZP5WkbEH0UWBNLfQ-E0Qqp2B27O_P8FqGmMoA"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô Dream Business - Hộp 420g (6 gói)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫175.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Lifestyle Banner Break -->
+<div class="my-6 rounded-lg overflow-hidden shadow-sm">
+<img alt="Ăn ngon - Sống khỏe" class="w-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhh4bugMeVuqGW0maj8Csice6ypDECI1ztfTbNVgClMyA0YOR1RrtBaVtiGg0pToEB2SfJfGqkTS7pxaCYT54c6optA39VWEo8TF81YJb3wK9Omg8Y-CMyw3ew0pGzWK5HGGLTNEPuMhSBlrE2m10Als9zHncE3AMz-oJpbxcAWn9M1Lru2suhNJCueOuG2x1BcGdyeG7pYvREDkNqWRd6XPxDebXRANdWPnTxPAtPLckuISesD6mqi7_wIkYeLg2szvCev5KPC0X8"/>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-3">
+<!-- Product 5 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Lương khô bay" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujaR2FAJIzGpLXvNs_3JlBJiym7-5dlPtmg3ha-xGfpgAoh3wYIQ4vQJGroef11vgIprAdH3--Lkf8dhcz3Jjh8qHVU0y4rOZtdW08ueSZJwelV_KUARidkLtFAf8Gg0xXwqy1rAqOHjed61yKQak9VOtoOU2RQfhV3j-tRGiqJ8W2ggoNe-TnUlRSDvV0xoUpKahiLwRLWglvYprZWb9aVSvyoIAxRxlOKJ_RusLq6Uy30_uYP_CzGr_eXqlBFCUnieGRu6pUiCQ"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô bay - Túi 180g (12 viên 15g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫54.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Happylife New" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujdtGj3_7_dpZq2dMlfT4gYIX0rXewrjGBcSlNePWwJaluM98pgGgV6q1__OOcFe-DYrf8ovfCHXsiMhwnNMPDJhicoveKLOJpOaKCER3Ynnw2W9ihGgDI0AqhxWBPclM6fWGsm1F3d4hPjByu0QFX2uhUpmgS5frhvI8Wa6VenkQNmkJVZnm8szWNeADOVNiL2tWRLPcfH8avZoMTUIflmOGCHYS5aaKaGiMbkbOnt5AlruglVg306QmJGIw1b1Q-u-cg5OVEsgg"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô Happylife New - Túi 360g (24 viên)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫99.500</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Dream Business Bag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug-fmsXLfBGaeYgaQI8mCV7wQ4YRuMEgI1-jSnrq03PTyFBmh8hetNor_3bj4vEYKINIoGQioXk1FJ2NehMmxgA8576XL0pGtTkFV9RwAJRdxgby5PQcrHF7Vuhcme6wf3lkE4GOs7rMuXfz035WI3ZE9rm-vXjMsWdAD4ObKTGTprv0_UVVsJTpe9ERwVDB4f3tiZpeI-NvRDu7HFXKz8ZfNeaHnO9tKsg6ejvdZP5WkbEH0UWBNLfQ-E0Qqp2B27O_P8FqGmMoA"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô Dream Business - Túi 300g (25 viên 12g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫94.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Lương khô hương quê" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhaqyRkUqygOIuEoBST8GTEGDD5JA_TSMHjp1VHma9UMsbTG3sUcm-v7meW0r0WUSoaxnXLvhplmb8O_B2q_q-ff1H4-ySjPMC7lGNiCg-PW8n5l2Qs11rhoqXRKsrW-sffwq8gDrHn3hVoy8tuB7fZMx8b4WgrUT6Fcj7sQbsGpMnsHF9tuZMaD5NsyXtQcJK9AQvFqrC5mbhPESbO8xuKSAopdDAR8j0uEWyNX8-mHdxjZbDMLpKQfGG5oGjCFo5JKB8WczaII8o"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô hương quê - Hộp 700g (6 gói)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫110.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 9 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Happy life New Diet" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujbJNJ5Iqav7x1yl7pmcYMOWCeoF8XPtuc7ppKTBkkU31JWEpOTpm9m4EZMY0QjLGxlG_foRvjClTpq3zHkVzsGa_GPXV0-at68Qz8v0U1LZurYZeVc-lNlbbLrlQvErYwy6YuuPJbBAWGRuQex4oMdUoDLaR6gYFhsMbZUi4CLn8NcquchjPDb5Yt86VcOh-AHrCF6t1TAJHIPnIUB_Sa0EoJ4Bvp3WVeQlMTDIhKWpcx-rXwyDTPvwvk4WzIClXjK9i4bBWILFe8"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô ăn kiêng Happy life New - Hộp 420g (6 gói 70g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫118.500</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 10 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Happy life New Diet Bag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujbJNJ5Iqav7x1yl7pmcYMOWCeoF8XPtuc7ppKTBkkU31JWEpOTpm9m4EZMY0QjLGxlG_foRvjClTpq3zHkVzsGa_GPXV0-at68Qz8v0U1LZurYZeVc-lNlbbLrlQvErYwy6YuuPJbBAWGRuQex4oMdUoDLaR6gYFhsMbZUi4CLn8NcquchjPDb5Yt86VcOh-AHrCF6t1TAJHIPnIUB_Sa0EoJ4Bvp3WVeQlMTDIhKWpcx-rXwyDTPvwvk4WzIClXjK9i4bBWILFe8"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô ăn kiêng Happy life New - Túi 180g (12 viên 15g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫90.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 11 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Lương khô bay big bag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujaR2FAJIzGpLXvNs_3JlBJiym7-5dlPtmg3ha-xGfpgAoh3wYIQ4vQJGroef11vgIprAdH3--Lkf8dhcz3Jjh8qHVU0y4rOZtdW08ueSZJwelV_KUARidkLtFAf8Gg0xXwqy1rAqOHjed61yKQak9VOtoOU2RQfhV3j-tRGiqJ8W2ggoNe-TnUlRSDvV0xoUpKahiLwRLWglvYprZWb9aVSvyoIAxRxlOKJ_RusLq6Uy30_uYP_CzGr_eXqlBFCUnieGRu6pUiCQ"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô bay - Túi 360g (24 viên 15g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫92.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 12 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Lương khô BB 794" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugY9VsnWczHE-JSbhOWvTpmOJn74x_sTTrPj7U_VHVBe8SLYgUdnoVXyZaebx1DmeGi6_u8mbe0bFbPFWYZMqB_sDeK6h-sJm6seIngNmLnl3Ka0rANRFO1AAsEDvKgftEj9P1zhf7xNAMFwBOKS37zI07kuFnKCHDjrvOU7h3a6uBibgSQg7dpbqdyF0EAJpXRp6TYI1ieaq6aLriUaSM4PA_RjOMebS0_wQFs1wi1ZvkmKWheKZgTGx4xIXVJUCBUB_1EahRldzM"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô Bộ binh BB702 - Hộp 420g (6 gói 70g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫90.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 13 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Viên năng lượng Ruốc gà" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uilJETFczhJ-oy5h8-ezXb2yYlLSVblO4-tls2KTiqN77kQlvcMH0PYa3HfnZL_QA4k2NYdbJhDVELW308Yw-Ow4Uog7jj9tvEUfltw6MFBHuQOn5CaTuZB8QtwxHsc_PdCKnglbUfBW4O9Ak8qNndlPqHCg9zW6amISElfd7x0_DZ69LiWU87CQCnOhI9c9m3UJuT-MtG5dImfuaiwgpOTQchnsGFUlGQjm_oMgYf-jR7dpcOwmAYakRvgpvwgQYAD9qiDKtQ00Q"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Viên năng lượng Ruốc gà - Túi 300g (25 viên 12g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫90.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 14 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Lương khô BB 794 bag" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujbJNJ5Iqav7x1yl7pmcYMOWCeoF8XPtuc7ppKTBkkU31JWEpOTpm9m4EZMY0QjLGxlG_foRvjClTpq3zHkVzsGa_GPXV0-at68Qz8v0U1LZurYZeVc-lNlbbLrlQvErYwy6YuuPJbBAWGRuQex4oMdUoDLaR6gYFhsMbZUi4CLn8NcquchjPDb5Yt86VcOh-AHrCF6t1TAJHIPnIUB_Sa0EoJ4Bvp3WVeQlMTDIhKWpcx-rXwyDTPvwvk4WzIClXjK9i4bBWILFe8"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Lương khô BB 794 -22 - Túi 300g (25 viên 12g)</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫95.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 15 -->
+<div class="product-card bg-white rounded-lg border border-outline-variant overflow-hidden shadow-sm flex flex-col">
+<div class="relative aspect-square">
+<img alt="Thịt hộp Anh Nuôi" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uh6c8S6q9r_oJ80kGdwX8Ym-tnVfZunKcUU5CMB6xIQIVvlsNJ4qeq0YMCCotgwwuJKBle_DMt0nhU-kzWRrpVfTUfJYd85uJnENt3WTsyBhZS102AfrlYd_-KIowFuXkLng8NJBtRZBGCUxdhllV74ATFvmzW4LjbjyKbEja_PY09OXtsrAAsYDfnTmAkXvKANDYX8xBVZH_mZ8Nq_vioTv6wCscH0R0a7eKPUcYUkbtH213E1iNNk_vSlO4QG9tviFWhJLKGABGg"/>
+<div class="absolute top-0 left-0"><span class="mall-badge">Mall</span></div>
+<div class="absolute bottom-0 left-0"><div class="sale-tag">SALE 5.5</div></div>
+</div>
+<div class="p-2 flex-1 flex flex-col">
+<h4 class="text-label-lg font-medium text-on-surface line-clamp-2 min-h-[40px] mb-2 leading-tight">Thịt hộp Anh Nuôi chuẩn Quân Đội 220gr</h4>
+<div class="mt-auto">
+<div class="flex items-baseline justify-between">
+<span class="text-secondary font-bold text-lg">₫105.000</span>
+<span class="material-symbols-outlined text-secondary text-sm">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border border-outline text-on-surface font-bold text-label-lg rounded-sm hover:bg-surface-container-high transition-colors">
+            Xem thêm sản phẩm
+        </button>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface py-2 pb-safe shadow-lg border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center text-secondary font-bold scale-95 transition-transform">
+<span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>home</span>
+<span class="text-label-sm font-label-sm">Trang chủ</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant scale-95 transition-transform hover:bg-surface-container-high">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-label-sm font-label-sm">Sản phẩm</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant scale-95 transition-transform hover:bg-surface-container-high">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-label-sm font-label-sm">Thông báo</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant scale-95 transition-transform hover:bg-surface-container-high">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm font-label-sm">Tài khoản</span>
+</div>
+</footer>
+</body></html>
